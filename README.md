@@ -45,12 +45,12 @@ Compose multiple promises. Each will pass its results to the next.
 Example:
 
 ```js
-import { pipe } from 'async-functional-utils';
+import { pipe } from "async-functional-utils";
 
-cost result = await pipe(
-    x => Promise.resolve(x * 2), // 6
-    x => Promise.resolve(x + 2), // 8
-    x => Promise.resolve(`${x}?`), // '8?'
+const result = await pipe(
+  (x) => Promise.resolve(x * 2), // 6
+  (x) => Promise.resolve(x + 2), // 8
+  (x) => Promise.resolve(`${x}?`) // '8?'
 )(3);
 ```
 
@@ -63,7 +63,7 @@ Example:
 ```js
 import { handlePipe } from "async-functional-utils";
 
-cost[(error, result)] = await handlePipe(
+const [error, result] = await handlePipe(
   (x) => Promise.resolve(x * 2), // 6
   (x) => Promise.resolve(x + 2), // 8
   (x) => Promise.resolve(`${x}?`) // '8?'
@@ -77,12 +77,12 @@ Compose multiple promises. Composes from right to left.
 Example:
 
 ```js
-import { compose } from 'async-functional-utils';
+import { compose } from "async-functional-utils";
 
-cost result = await compose(
-    x => Promise.resolve(`${x}?`), // '8?'
-    x => Promise.resolve(x + 2), // 8
-    x => Promise.resolve(x * 2), // 6
+const result = await compose(
+  (x) => Promise.resolve(`${x}?`), // '8?'
+  (x) => Promise.resolve(x + 2), // 8
+  (x) => Promise.resolve(x * 2) // 6
 )(3);
 ```
 
@@ -95,7 +95,7 @@ Example:
 ```js
 import { handleCompose } from "async-functional-utils";
 
-cost[(result, error)] = await handleCompose(
+const [result, error] = await handleCompose(
   (x) => Promise.resolve(`${x}?`), // '8?'
   (x) => Promise.resolve(x + 2), // 8
   (x) => Promise.resolve(x * 2) // 6
