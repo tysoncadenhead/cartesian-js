@@ -1,10 +1,11 @@
-import { handle } from "../";
+import { handle, compose } from "../";
+import { pipe } from "../pipe";
 
 describe("The async error handler", () => {
   it("Should resolve successful results", async () => {
     const myPromise = () => Promise.resolve("Good");
 
-    const [result, error] = await handle(myPromise());
+    const [error, result] = await handle(myPromise());
 
     expect(error).toBe(undefined);
     expect(result).toEqual("Good");
@@ -13,7 +14,7 @@ describe("The async error handler", () => {
   it("Should resolve unsuccessful results", async () => {
     const myPromise = () => Promise.reject("Bad");
 
-    const [result, error] = await handle(myPromise());
+    const [error, result] = await handle(myPromise());
 
     expect(error).toBe("Bad");
     expect(result).toEqual(undefined);

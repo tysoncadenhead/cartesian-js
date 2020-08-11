@@ -1,5 +1,5 @@
 {
-  "name": "async-functional",
+  "name": "async-functional-utils",
   "version": "1.0.0",
   "description": "Utilities to do async things with fp",
   "main": "lib/index.js",
@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "build": "tsc",
     "start": "tsc --watch",
-    "release": "tsc; publish"
+    "release": "test; tsc; publish"
   },
   "author": "Tyson Cadenhead",
   "license": "GNU",

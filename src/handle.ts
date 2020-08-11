@@ -1,9 +1,9 @@
 export const handle = (promise: Promise<any>) =>
   promise
-    .then((data) => [data, undefined])
+    .then((data) => [undefined, data])
     .catch((error) =>
       Promise.resolve([
-        undefined,
         error.message === "[object Object]" ? {} : error,
+        undefined,
       ])
     );
