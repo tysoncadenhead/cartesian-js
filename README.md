@@ -2,6 +2,20 @@
 
 This utility library is designed to handle async code using functional paradigms like `curry` and `compose`. It is currently a work in progress and more utilities will be added.
 
+## Installation
+
+NPM:
+
+```
+npm install async-functional-utils -S
+```
+
+Yarn:
+
+```
+yarn add async-functional-utils --save
+```
+
 ## API
 
 ### handle(Promise<any>) => [Error, Response]
