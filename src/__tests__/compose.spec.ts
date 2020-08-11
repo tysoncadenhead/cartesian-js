@@ -1,4 +1,4 @@
-import { compose } from "../";
+import { compose } from "../compose";
 
 describe("compose", () => {
   it("Should pipe from left to right", async () => {

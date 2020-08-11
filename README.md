@@ -40,6 +40,22 @@ cost result = await pipe(
 )(3);
 ```
 
+### handlePipe(...Promises<any>) => Promise<[error, response]>
+
+The same as pipe, but wrapped in a handle. Returns an array of `[error, response]`
+
+Example:
+
+```js
+import { handlePipe } from "async-functional-utils";
+
+cost[(error, result)] = await handlePipe(
+  (x) => Promise.resolve(x * 2), // 6
+  (x) => Promise.resolve(x + 2), // 8
+  (x) => Promise.resolve(`${x}?`) // '8?'
+)(3);
+```
+
 ### compose(...Promises<any>) => Promise<any>
 
 Compose multiple promises. Composes from right to left.
@@ -53,5 +69,21 @@ cost result = await compose(
     x => Promise.resolve(`${x}?`), // '8?'
     x => Promise.resolve(x + 2), // 8
     x => Promise.resolve(x * 2), // 6
+)(3);
+```
+
+### handleCompose(...Promises<any>) => Promise<[error, response]>
+
+The same as compose, but wrapped in a handle. Returns an array of `[error, response]`
+
+Example:
+
+```js
+import { handleCompose } from "async-functional-utils";
+
+cost[(result, error)] = await handleCompose(
+  (x) => Promise.resolve(`${x}?`), // '8?'
+  (x) => Promise.resolve(x + 2), // 8
+  (x) => Promise.resolve(x * 2) // 6
 )(3);
 ```
