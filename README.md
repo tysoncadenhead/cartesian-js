@@ -104,7 +104,7 @@ const [result, error] = await handleCompose(
 
 ### map(Promise) => (Array<any>) : Promise<response>
 
-Maps over an array and calls passes each item into a promise.
+Maps over an array async.
 
 Example:
 
@@ -118,7 +118,7 @@ console.log(result); // [3, 6, 9]
 
 ### reduce(Promise, ?initialValue) => (Array<any>) : Promise<response>
 
-Reduces over an array and calls passes each item into a promise.
+Reduces over an array async.
 
 Example:
 
@@ -130,4 +130,46 @@ const [six, seven] = await reduce((prev, x) => {
 }, [])([1, 2]);
 
 console.log(six); // 6
+```
+
+### filter(Promise) => (Array<any>) : Promise<response>
+
+Filters over an array async.
+
+Example:
+
+```js
+import { filter } from "async-functional-utils";
+
+const result = await filter((x) => {
+  return Promise.resolve(x.includes("hi"));
+})(["hi", "high", "hay"]);
+
+console.log(result); // ["hi", "hey"]
+```
+
+### batch(Promise, {
+
+batchSize?: number;
+}) => (Array<any>) : Promise<response>
+
+Executes a given number of promises against an array at a time.
+
+Example:
+
+```js
+const result = await batch(
+  (x) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(x);
+      }, 10);
+    });
+  },
+  {
+    batchSize: 2,
+  }
+)([1, 2, 3, 4, 5]);
+
+console.log(result); // [1, 2, 3, 4, 5]
 ```
