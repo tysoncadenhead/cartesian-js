@@ -1,6 +1,6 @@
 {
   "name": "async-functional-utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utilities to do async things with fp",
   "main": "lib/index.js",
   "scripts": {
