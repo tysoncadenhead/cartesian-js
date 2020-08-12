@@ -38,7 +38,7 @@ if (response) {
 }
 ```
 
-### pipe(...Promises<any>) => Promise<any>
+### pipe(...Promises<any>) => (any) : Promise<any>
 
 Compose multiple promises. Each will pass its results to the next.
 
@@ -54,7 +54,7 @@ const result = await pipe(
 )(3);
 ```
 
-### handlePipe(...Promises<any>) => Promise<[error, response]>
+### handlePipe(...Promises<any>) => (any) : Promise<[error, response]>
 
 The same as pipe, but wrapped in a handle. Returns an array of `[error, response]`
 
@@ -70,7 +70,7 @@ const [error, result] = await handlePipe(
 )(3);
 ```
 
-### compose(...Promises<any>) => Promise<any>
+### compose(...Promises<any>) => (any) : Promise<any>
 
 Compose multiple promises. Composes from right to left.
 
@@ -86,7 +86,7 @@ const result = await compose(
 )(3);
 ```
 
-### handleCompose(...Promises<any>) => Promise<[error, response]>
+### handleCompose(...Promises<any>) => (any) : Promise<[error, response]>
 
 The same as compose, but wrapped in a handle. Returns an array of `[error, response]`
 
@@ -100,4 +100,18 @@ const [result, error] = await handleCompose(
   (x) => Promise.resolve(x + 2), // 8
   (x) => Promise.resolve(x * 2) // 6
 )(3);
+```
+
+### map(Promise) => (Array<any>) : Promise<[error, response]>
+
+Maps over an array and calls passes each item into a promise.
+
+Example:
+
+```js
+import { map } from "async-functional-utils";
+
+const result = await map((x) => Promise.resolve(x * 3))([1, 2, 3]);
+
+console.log(result); // [3, 6, 9]
 ```
