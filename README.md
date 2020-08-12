@@ -148,10 +148,7 @@ const result = await filter((x) => {
 console.log(result); // ["hi", "hey"]
 ```
 
-### batch(Promise, {
-
-batchSize?: number;
-}) => (Array<any>) : Promise<response>
+### batch(Promise, { batchSize?: number; }) => (Array<any>) : Promise<response>
 
 Executes a given number of promises against an array at a time.
 
