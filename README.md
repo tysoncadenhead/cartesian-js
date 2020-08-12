@@ -102,7 +102,7 @@ const [result, error] = await handleCompose(
 )(3);
 ```
 
-### map(Promise) => (Array<any>) : Promise<[error, response]>
+### map(Promise) => (Array<any>) : Promise<response>
 
 Maps over an array and calls passes each item into a promise.
 
@@ -114,4 +114,20 @@ import { map } from "async-functional-utils";
 const result = await map((x) => Promise.resolve(x * 3))([1, 2, 3]);
 
 console.log(result); // [3, 6, 9]
+```
+
+### reduce(Promise, ?initialValue) => (Array<any>) : Promise<response>
+
+Reduces over an array and calls passes each item into a promise.
+
+Example:
+
+```js
+import { reduce } from "async-functional-utils";
+
+const [six, seven] = await reduce((prev, x) => {
+  return Promise.resolve([...prev, x + 5]);
+}, [])([1, 2]);
+
+console.log(six); // 6
 ```
