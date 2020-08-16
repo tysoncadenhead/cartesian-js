@@ -12,3 +12,5 @@ export const filter = (fn) => async (args): Promise<any> =>
       }),
     Promise.resolve([])
   );
+
+export default filter;

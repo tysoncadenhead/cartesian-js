@@ -1,3 +1,5 @@
+import { handleCompose } from "./handleCompose";
+
 export const handle = (promise: Promise<any>) =>
   promise
     .then((data) => [undefined, data])
@@ -7,3 +9,5 @@ export const handle = (promise: Promise<any>) =>
         undefined,
       ])
     );
+
+export default handle;

@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "build": "tsc",
     "start": "tsc --watch",
-    "release": "test; tsc; publish"
+    "release": "test; tsc; cp ./package.json ./lib/package.json;  cp ./.npmignore ./lib/.npmignore; cd lib && publish"
   },
   "author": "Tyson Cadenhead",
   "license": "GNU",

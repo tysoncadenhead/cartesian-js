@@ -4,3 +4,5 @@ export const sleep = (milliseconds: number) => (args?: any) =>
       resolve(args);
     }, milliseconds);
   });
+
+export default sleep;

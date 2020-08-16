@@ -3,3 +3,5 @@ export const reduce = (fn, initialValue) => async (args): Promise<any> =>
     (prev, arg) => prev.then((prevValue) => fn(prevValue, arg)),
     Promise.resolve(initialValue)
   );
+
+export default reduce;

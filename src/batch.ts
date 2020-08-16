@@ -12,3 +12,5 @@ export const batch = (fn, options) => (arr) => {
       .reduce((promises, exec) => promises.then(exec), Promise.resolve([]))
   );
 };
+
+export default batch;
