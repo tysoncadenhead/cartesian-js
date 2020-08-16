@@ -41,6 +41,7 @@ import compose from 'afunk/compose';
 ## API
 
 - [batch](#batch)
+- [cancelable](#cancelable)
 - [compose](#compose)
 - [filter](#filter)
 - [handle](#handle)
@@ -75,6 +76,24 @@ const result = await batch(
 )([1, 2, 3, 4, 5]);
 
 console.log(result); // [1, 2, 3, 4, 5]
+```
+
+### cancelable
+
+`cancelable(() => Promise) => (any) : Promise<T> + cancel()`
+
+Exposes a method on a promise to cancel it.
+
+Example:
+
+```js
+const result = cancelable(doSomethingDangerous);
+
+result.then(() => {
+  console.log("Never happens");
+});
+
+result.cancel();
 ```
 
 ### compose
