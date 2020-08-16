@@ -170,3 +170,17 @@ const result = await batch(
 
 console.log(result); // [1, 2, 3, 4, 5]
 ```
+
+### sleep(milliseconds: number) => (any) : Promise<response>
+
+Waits for a certain number of milliseconds and then proceeds.
+
+Example:
+
+```js
+console.log("Wait a second...");
+
+const result = await sleep(1000)("Okay"); // Sleep for a second
+
+console.log(result); // 'Okay'
+```

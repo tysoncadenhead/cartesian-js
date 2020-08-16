@@ -7,3 +7,4 @@ export * from "./map";
 export * from "./reduce";
 export * from "./filter";
 export * from "./batch";
+export * from "./sleep";
