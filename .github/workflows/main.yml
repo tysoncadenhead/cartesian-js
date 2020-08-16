@@ -22,10 +22,7 @@ jobs:
       - name: Test
         run: yarn test
 
-      - name: Release
-        run: |
-          echo "//<npm-registry>:8080/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
-          yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          package: "./lib/package.json"
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
