@@ -184,3 +184,21 @@ const result = await sleep(1000)("Okay"); // Sleep for a second
 
 console.log(result); // 'Okay'
 ```
+
+### timeout({ wait: number, errorMessage?: string }, () => Promise<any> => any : Promise<any>
+
+If the timeout happens before a response comes back, we resolve an error.
+
+Example:
+
+```js
+const [error, result] = await handle(
+  timeout(
+    {
+      wait: 3000,
+      errorMessage: "Chronologically challenged",
+    },
+    longRunningPromise
+  )
+);
+```

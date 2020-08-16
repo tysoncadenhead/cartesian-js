@@ -8,3 +8,4 @@ export { reduce } from "./reduce";
 export { filter } from "./filter";
 export { batch } from "./batch";
 export { sleep } from "./sleep";
+export { timeout } from "./timeout";
