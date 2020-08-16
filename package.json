@@ -6,9 +6,10 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "tsc",
+    "copyDeps": "cp ./package.json ./lib/package.json;  cp ./.npmignore ./lib/.npmignore",
+    "build": "tsc; yarn copyDeps",
     "start": "tsc --watch",
-    "release": "yarn test; yarn build; cp ./package.json ./lib/package.json;  cp ./.npmignore ./lib/.npmignore; cd lib && publish"
+    "release": "cd lib && publish"
   },
   "author": "Tyson Cadenhead",
   "license": "GNU",
