@@ -1,5 +1,5 @@
 {
-  "name": "async-functional-utils",
+  "name": "afunk",
   "version": "1.0.7",
   "description": "Utilities to do async things with fp",
   "main": "lib/index.js",
