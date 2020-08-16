@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "copyDeps": "cp ./package.json ./lib/package.json;  cp ./.npmignore ./lib/.npmignore",
+    "copyDeps": "cp ./package.json ./lib/package.json; cp ./.npmignore ./lib/.npmignore; cp ./README.md ./lib/README.md",
     "build": "tsc; yarn copyDeps",
     "start": "tsc --watch",
     "release": "cd lib && publish"
