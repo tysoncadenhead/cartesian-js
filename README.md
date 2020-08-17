@@ -15,29 +15,29 @@ This library is meant to give some building blocks form composing your business 
 NPM:
 
 ```
-npm install descartes-js -S
+npm install cartesian-js -S
 ```
 
 Yarn:
 
 ```
-yarn add descartes-js --save
+yarn add cartesian-js --save
 ```
 
 The library can be used either by requiring the whole thing or even requiring individual functions. The package is modular and most of the functions are one or two liners, so your build size should not be affected much.
 
 ```
 // Load the full build.
-const descartes-js = require('descartes-js');
+const cartesian-js = require('cartesian-js');
 
 // Load the full build with ESM
-import * as descartes-js from 'descartes-js';
+import * as cartesian-js from 'cartesian-js';
 
 // Pull in a single module
-import { compose } from 'descartes-js';
+import { compose } from 'cartesian-js';
 
 // Directly load a single module
-import compose from 'descartes-js/compose';
+import compose from 'cartesian-js/compose';
 ```
 
 ## API
@@ -88,7 +88,7 @@ Compose multiple promises. Composes from right to left.
 Example:
 
 ```js
-import { compose } from "descartes-js";
+import { compose } from "cartesian-js";
 
 const result = await compose(
   (x) => Promise.resolve(`${x}?`), // '8?'
@@ -106,7 +106,7 @@ Filters over an array async.
 Example:
 
 ```js
-import { filter } from "descartes-js";
+import { filter } from "cartesian-js";
 
 const result = await filter((x) => {
   return Promise.resolve(x.includes("hi"));
@@ -124,7 +124,7 @@ Wraps a promise in a catch and returns an array of any caught errors as the firs
 Example:
 
 ```js
-import { handle } from "descartes-js";
+import { handle } from "cartesian-js";
 
 const [error, response] = await handle(api.deleteEverything);
 
@@ -146,7 +146,7 @@ The same as compose, but wrapped in a handle. Returns an array of `[error, respo
 Example:
 
 ```js
-import { handleCompose } from "descartes-js";
+import { handleCompose } from "cartesian-js";
 
 const [result, error] = await handleCompose(
   (x) => Promise.resolve(`${x}?`), // '8?'
@@ -164,7 +164,7 @@ The same as [pipe](#pipe), but wrapped in a [handle](#handle). Returns an array 
 Example:
 
 ```js
-import { handlePipe } from "descartes-js";
+import { handlePipe } from "cartesian-js";
 
 const [error, result] = await handlePipe(
   (x) => Promise.resolve(x * 2), // 6
@@ -182,7 +182,7 @@ Maps over an array async.
 Example:
 
 ```js
-import { map } from "descartes-js";
+import { map } from "cartesian-js";
 
 const result = await map((x) => Promise.resolve(x * 3))([1, 2, 3]);
 
@@ -198,7 +198,7 @@ Compose multiple promises. Each will pass its results to the next.
 Example:
 
 ```js
-import { pipe } from "descartes-js";
+import { pipe } from "cartesian-js";
 
 const result = await pipe(
   (x) => Promise.resolve(x * 2), // 6
@@ -216,7 +216,7 @@ Reduces over an array async.
 Example:
 
 ```js
-import { reduce } from "descartes-js";
+import { reduce } from "cartesian-js";
 
 const [six, seven] = await reduce((prev, x) => {
   return Promise.resolve([...prev, x + 5]);
