@@ -1,5 +1,7 @@
 # CartesianJS
 
+![](./docs/descartes.png)
+
 > Async Therefore I Am
 
 A practical functional asynchronous library for JavaScript programmers.
