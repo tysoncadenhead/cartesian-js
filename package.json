@@ -1,7 +1,7 @@
 {
-  "name": "afunk",
+  "name": "cartesian-js",
   "version": "1.0.7",
-  "description": "Utilities to do async things with fp",
+  "description": "Async Therefore I am",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
