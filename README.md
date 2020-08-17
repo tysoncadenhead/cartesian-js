@@ -65,6 +65,8 @@ Executes a given number of promises against an array at a time.
 Example:
 
 ```js
+import { batch } from "cartesian-js";
+
 const result = await batch(
   (x) => {
     return new Promise((resolve) => {
@@ -236,6 +238,8 @@ Waits for a certain number of milliseconds and then proceeds.
 Example:
 
 ```js
+import { sleep } from "cartesian-js";
+
 console.log("Wait a second...");
 
 const result = await sleep(1000)("Okay"); // Sleep for a second
@@ -252,6 +256,8 @@ If the timeout happens before a response comes back, we resolve an error.
 Example:
 
 ```js
+import { timeout, handle } from "cartesian-js";
+
 const [error, result] = await handle(
   timeout(
     {
