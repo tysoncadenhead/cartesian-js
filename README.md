@@ -1,6 +1,6 @@
 # CartesianJS
 
-![](./docs/descartes.png)
+<img src="./docs/descartes.png" height="200px" alt="Rene Descartes" />
 
 > Async Therefore I Am
 
