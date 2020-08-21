@@ -4,10 +4,12 @@ describe("timeout", () => {
   it("Should timeout after a second", async () => {
     const [error, result] = await handle(
       timeout(
+        sleep({
+          timeout: 100,
+        }),
         {
-          wait: 50,
-        },
-        sleep(100)
+          timeout: 50,
+        }
       )({})
     );
 
@@ -18,11 +20,13 @@ describe("timeout", () => {
   it("Should accept a custom error message", async () => {
     const [error, result] = await handle(
       timeout(
+        sleep({
+          timeout: 100,
+        }),
         {
-          wait: 50,
+          timeout: 50,
           errorMessage: "How did it get so late so soon?”",
-        },
-        sleep(100)
+        }
       )({})
     );
 
@@ -33,10 +37,12 @@ describe("timeout", () => {
   it("Should not throw an error if it resolves before timing out", async () => {
     const [error, result] = await handle(
       timeout(
+        sleep({
+          timeout: 50,
+        }),
         {
-          wait: 100,
-        },
-        sleep(50)
+          timeout: 100,
+        }
       )("Yay")
     );
 

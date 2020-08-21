@@ -1,8 +1,12 @@
-export const sleep = (milliseconds: number) => (args?: any) =>
+interface SleepProps {
+  timeout: number;
+}
+
+export const sleep = (options: SleepProps) => (args?: any) =>
   new Promise((resolve) => {
     setTimeout(() => {
       resolve(args);
-    }, milliseconds);
+    }, options.timeout);
   });
 
 export default sleep;

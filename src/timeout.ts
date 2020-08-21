@@ -1,16 +1,16 @@
 interface TimeoutOptions {
-  wait: number;
+  timeout: number;
   errorMessage?: string;
 }
 
 export const timeout = (
-  { wait, errorMessage }: TimeoutOptions,
-  promise
+  promise,
+  { timeout, errorMessage }: TimeoutOptions
 ) => async (props) => {
   return new Promise(function (resolve, reject) {
     const timer = setTimeout(() => {
       reject(errorMessage || "Timed out");
-    }, wait);
+    }, timeout);
 
     promise(props)
       .then(function (res) {

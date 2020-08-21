@@ -153,7 +153,7 @@ Example:
 ```js
 import { handleCompose } from "cartesian-js";
 
-const [result, error] = await handleCompose(
+const [error, response] = await handleCompose(
   (x) => Promise.resolve(`${x}?`), // '8?'
   (x) => Promise.resolve(x + 2), // 8
   (x) => Promise.resolve(x * 2) // 6
@@ -259,14 +259,16 @@ import { sleep } from "cartesian-js";
 
 console.log("Wait a second...");
 
-const result = await sleep(1000)("Okay"); // Sleep for a second
+const result = await sleep({
+  timeout: 1000,
+})("Okay"); // Sleep for a second
 
 console.log(result); // 'Okay'
 ```
 
 ### timeout
 
-`timeout({ wait: number, errorMessage?: string }, () => Promise<any> => any : Promise<any>`
+`timeout({ timeout: number, errorMessage?: string }, () => Promise<any> => any : Promise<any>`
 
 If the timeout happens before a response comes back, we resolve an error.
 
@@ -276,12 +278,9 @@ Example:
 import { timeout, handle } from "cartesian-js";
 
 const [error, result] = await handle(
-  timeout(
-    {
-      wait: 3000,
-      errorMessage: "Chronologically challenged",
-    },
-    longRunningPromise
-  )
+  timeout(longRunningPromise, {
+    timeout: 3000,
+    errorMessage: "Chronologically challenged",
+  })
 );
 ```

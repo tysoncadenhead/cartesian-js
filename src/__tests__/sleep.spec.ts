@@ -8,7 +8,9 @@ describe("sleep", () => {
       expect(finished).toEqual(false);
     }, 5);
 
-    await sleep(10)().then(() => {
+    await sleep({
+      timeout: 10,
+    })().then(() => {
       finished = true;
     });
 
