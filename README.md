@@ -53,6 +53,7 @@ import compose from 'cartesian-js/compose';
 - [map](#map)
 - [pipe](#pipe)
 - [reduce](#reduce)
+- [retry](#retry)
 - [sleep](#sleep)
 - [timeout](#timeout)
 
@@ -227,6 +228,22 @@ const [six, seven] = await reduce((prev, x) => {
 }, [])([1, 2]);
 
 console.log(six); // 6
+```
+
+### retry
+
+`(fn: () => Promise, { attempts: number }) => Promise<response>`
+
+Waits for a certain number of milliseconds and then proceeds.
+
+Example:
+
+```js
+import { retry } from "cartesian-js";
+
+const result = await retry(myGreatPromise, {
+  attempts: 3, // Number of times to retry before failing
+})(null);
 ```
 
 ### sleep
