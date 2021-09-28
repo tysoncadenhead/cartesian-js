@@ -2,11 +2,9 @@ interface RetryOptions {
   attempts: number;
 }
 
-type PromiseFunction = (data: any) => Promise<any>;
-
-const attempt = (
+const attempt = <Args, T>(
   attemptNumber: number,
-  fn: PromiseFunction,
+  fn: (data: Args) => Promise<T>,
   options: RetryOptions,
   data
 ) => {
@@ -19,8 +17,9 @@ const attempt = (
   });
 };
 
-export const retry = (fn: PromiseFunction, options: RetryOptions) => async (
-  data
-) => attempt(1, fn, options, data);
+export const retry =
+  <Args, T>(fn: (data: Args) => Promise<T>, options: RetryOptions) =>
+  async (data) =>
+    attempt<Args, T>(1, fn, options, data);
 
 export default retry;

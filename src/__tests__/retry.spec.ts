@@ -1,4 +1,4 @@
-import { retry, handle } from "../";
+import { handle, retry } from "../";
 
 describe("retry", () => {
   it("Should retry three times and then fail", async () => {
@@ -42,8 +42,8 @@ describe("retry", () => {
   it("Should succeed after failing a couple times", async () => {
     let tries = 0;
 
-    const [, data] = await handle(
-      retry(
+    const [, data] = await handle<string, string>(
+      retry<null, string>(
         () => {
           tries++;
           if (tries < 3) {

@@ -1,4 +1,4 @@
-import { timeout, handle, sleep } from "../";
+import { handle, sleep, timeout } from "../";
 
 describe("timeout", () => {
   it("Should timeout after a second", async () => {
@@ -35,8 +35,8 @@ describe("timeout", () => {
   });
 
   it("Should not throw an error if it resolves before timing out", async () => {
-    const [error, result] = await handle(
-      timeout(
+    const [error, result] = await handle<string, string>(
+      timeout<string, string>(
         sleep({
           timeout: 50,
         }),

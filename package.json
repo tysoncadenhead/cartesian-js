@@ -1,6 +1,6 @@
 {
   "name": "cartesian-js",
-  "version": "1.0.10",
+  "version": "2.0.0",
   "description": "Async Therefore I am",
   "main": "lib/index.js",
   "scripts": {

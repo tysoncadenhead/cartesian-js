@@ -13,7 +13,9 @@ describe("handlePipe", () => {
   });
 
   it("Should handle errors", async () => {
-    const [error, result] = await handlePipe(() => Promise.reject(`error`))();
+    const [error, result] = await handlePipe<number, string, string>(() =>
+      Promise.reject(`error`)
+    )();
 
     expect(error).toEqual("error");
     expect(result).toEqual(undefined);

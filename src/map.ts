@@ -1,4 +1,6 @@
-export const map = (fn) => async (args): Promise<any> =>
-  Promise.all(args.map((item) => fn(item)));
+export const map =
+  <Args, T>(fn) =>
+  async (args: Args[]): Promise<T[]> =>
+    Promise.all(args.map((item) => fn(item)));
 
 export default map;

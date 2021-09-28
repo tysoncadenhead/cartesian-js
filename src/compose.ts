@@ -1,5 +1,5 @@
 import { pipe } from "./pipe";
 
-export const compose = (...fns) => pipe(...fns.reverse());
+export const compose = <Args, T>(...fns) => pipe<Args, T>(...fns.reverse());
 
 export default compose;

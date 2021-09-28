@@ -1,6 +1,4 @@
-import { handleCompose } from "./handleCompose";
-
-export const handle = (promise: Promise<any>) =>
+export const handle = <T, E>(promise: Promise<unknown>): Promise<[E, T]> =>
   promise
     .then((data) => [undefined, data])
     .catch((error) =>
@@ -8,6 +6,6 @@ export const handle = (promise: Promise<any>) =>
         error.message === "[object Object]" ? {} : error,
         undefined,
       ])
-    );
+    ) as Promise<[E, T]>;
 
 export default handle;
