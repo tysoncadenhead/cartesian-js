@@ -56,6 +56,7 @@ import compose from 'cartesian-js/compose';
 - [retry](#retry)
 - [sleep](#sleep)
 - [timeout](#timeout)
+- [tryCatch](#tryCatch)
 
 ### batch
 
@@ -283,4 +284,26 @@ const [error, result] = await handle(
     errorMessage: "Chronologically challenged",
   })
 );
+```
+
+### tryCatch
+
+`tryCatch(Promise<any>) => [Error, Response] | tryCatch(Fn) => [Error, Response]`
+
+Tries to execute a function or a promise and returns either an error or the response.
+
+Example:
+
+```js
+import { tryCatch } from "cartesian-js";
+
+const [error, response] = await tryCatch(api.deleteEverything);
+
+if (error) {
+  console.log(error);
+}
+
+if (response) {
+  console.log(response);
+}
 ```
