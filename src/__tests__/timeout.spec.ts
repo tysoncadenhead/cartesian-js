@@ -1,52 +1,49 @@
-import { handle, sleep, timeout } from "../";
+import {handle, sleep, timeout} from '../';
 
-describe("timeout", () => {
-  it("Should timeout after a second", async () => {
+describe('timeout', () => {
+  it('Should timeout after a second', async () => {
     const [error, result] = await handle(
-      timeout(
+      timeout({
+        timeout: 50,
+      })(
         sleep({
           timeout: 100,
         }),
-        {
-          timeout: 50,
-        }
-      )({})
+      )({}),
     );
 
     expect(result).toBeFalsy();
-    expect(error).toEqual("Timed out");
+    expect(error).toEqual('Timed out');
   });
 
-  it("Should accept a custom error message", async () => {
+  it('Should accept a custom error message', async () => {
     const [error, result] = await handle(
-      timeout(
+      timeout({
+        timeout: 50,
+        errorMessage: 'How did it get so late so soon?”',
+      })(
         sleep({
           timeout: 100,
         }),
-        {
-          timeout: 50,
-          errorMessage: "How did it get so late so soon?”",
-        }
-      )({})
+      )({}),
     );
 
     expect(result).toBeFalsy();
-    expect(error).toEqual("How did it get so late so soon?”");
+    expect(error).toEqual('How did it get so late so soon?”');
   });
 
-  it("Should not throw an error if it resolves before timing out", async () => {
+  it('Should not throw an error if it resolves before timing out', async () => {
     const [error, result] = await handle<string, string>(
-      timeout<string, string>(
+      timeout<string, string>({
+        timeout: 100,
+      })(
         sleep({
           timeout: 50,
         }),
-        {
-          timeout: 100,
-        }
-      )("Yay")
+      )('Yay'),
     );
 
     expect(error).toBeFalsy();
-    expect(result).toEqual("Yay");
+    expect(result).toEqual('Yay');
   });
 });

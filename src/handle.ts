@@ -1,5 +1,6 @@
-export const handle = <T, E>(promise: Promise<unknown>): Promise<[E, T]> =>
-  promise
+export const handle = <T, E>(promise: Promise<unknown>): Promise<[E, T]> => {
+  const promised = promise?.then ? promise : Promise.resolve(promise);
+  return promised
     .then((data) => [undefined, data])
     .catch((error) =>
       Promise.resolve([
@@ -7,5 +8,5 @@ export const handle = <T, E>(promise: Promise<unknown>): Promise<[E, T]> =>
         undefined,
       ]),
     ) as Promise<[E, T]>;
-
+};
 export default handle;

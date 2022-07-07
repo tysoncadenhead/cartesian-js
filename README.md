@@ -69,20 +69,60 @@ Example:
 ```js
 import { batch } from "cartesian-js";
 
-const result = await batch(
+const result = await batch({
+    batchSize: 2,
+  })(
   (x) => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(x);
       }, 10);
     });
-  },
-  {
-    batchSize: 2,
   }
 )([1, 2, 3, 4, 5]);
 
 console.log(result); // [1, 2, 3, 4, 5]
+```
+
+#### map
+
+You may provide an optional `retry` object to the `batch` options to perform a set number of retries on each result:
+
+```js
+import { batch, pipe } from "cartesian-js";
+
+const result = await batch({
+    batchSize: 1,
+    retry: {
+      attempts: 3,
+    }
+})(
+  myAsyncFunction,
+)([...arr]);
+```
+
+#### handle
+
+You may provide an optional `handle` function to the `batch` options to catch any errors on an individual item and deal with them without throwing
+
+```js
+import { batch, pipe } from "cartesian-js";
+
+const result = await batch({
+    batchSize: 2,
+    handle: (err) => {
+      // Just log the error and continue
+      console.warn(err);
+
+      // Whatever is returned here will be part of the resulting array
+      // If you don't return anything, it will have an `undefined` hole in the array
+      return {
+        error: true
+      }
+    }
+})(
+  myAsyncFunction
+)([...arr]);
 ```
 
 ### compose
@@ -233,7 +273,7 @@ console.log(six); // 6
 
 ### retry
 
-`(fn: () => Promise, { attempts: number }) => Promise<response>`
+`({ attempts: number })(fn: () => Promise) => Promise<response>`
 
 Waits for a certain number of milliseconds and then proceeds.
 
@@ -242,9 +282,9 @@ Example:
 ```js
 import { retry } from "cartesian-js";
 
-const result = await retry(myGreatPromise, {
+const result = await retry({
   attempts: 3, // Number of times to retry before failing
-})(null);
+})(myGreatPromise)(null);
 ```
 
 ### sleep
@@ -269,7 +309,7 @@ console.log(result); // 'Okay'
 
 ### timeout
 
-`timeout({ timeout: number, errorMessage?: string }, () => Promise<any> => any : Promise<any>`
+`timeout({ timeout: number, errorMessage?: string })(() => Promise<any> => any : Promise<any>`
 
 If the timeout happens before a response comes back, we resolve an error.
 
@@ -279,10 +319,10 @@ Example:
 import { timeout, handle } from "cartesian-js";
 
 const [error, result] = await handle(
-  timeout(longRunningPromise, {
+  timeout({
     timeout: 3000,
     errorMessage: "Chronologically challenged",
-  })
+  })(longRunningPromise)
 );
 ```
 

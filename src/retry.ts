@@ -1,4 +1,4 @@
-interface RetryOptions {
+export interface RetryOptions {
   attempts: number;
 }
 
@@ -6,7 +6,7 @@ const attempt = <Args, T>(
   attemptNumber: number,
   fn: (data: Args) => Promise<T>,
   options: RetryOptions,
-  data
+  data,
 ) => {
   return fn(data).catch((err) => {
     if (attemptNumber < options.attempts) {
@@ -18,7 +18,8 @@ const attempt = <Args, T>(
 };
 
 export const retry =
-  <Args, T>(fn: (data: Args) => Promise<T>, options: RetryOptions) =>
+  <Args, T>(options: RetryOptions) =>
+  (fn: (data: Args) => Promise<T>) =>
   async (data) =>
     attempt<Args, T>(1, fn, options, data);
 

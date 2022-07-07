@@ -4,11 +4,12 @@ interface TimeoutOptions {
 }
 
 export const timeout =
-  <Args, T>(promise, { timeout, errorMessage }: TimeoutOptions) =>
+  <Args, T>({timeout, errorMessage}: TimeoutOptions) =>
+  (promise) =>
   async (props: Args): Promise<T> => {
     return new Promise(function (resolve, reject) {
       const timer = setTimeout(() => {
-        reject(errorMessage || "Timed out");
+        reject(errorMessage || 'Timed out');
       }, timeout);
 
       promise(props)
