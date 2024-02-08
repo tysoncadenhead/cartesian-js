@@ -22,7 +22,5 @@ jobs:
       - name: Test
         run: yarn test
 
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          package: "./lib/package.json"
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
+      - run: npm config set //registry.npmjs.org/:_authToken ${NPM_AUTH_TOKEN}
+      - run: npm run release
