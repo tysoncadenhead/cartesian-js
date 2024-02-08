@@ -22,5 +22,5 @@ jobs:
       - name: Test
         run: yarn test
 
-      - run: npm config set //registry.npmjs.org/:_authToken ${secrets.NPM_AUTH_TOKEN}
+      - run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_AUTH_TOKEN }}
       - run: npm run release
